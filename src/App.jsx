@@ -164,6 +164,25 @@ function App() {
     }
   };
 
+  const handleShareFact = async () => {
+    if (state.funFactData && state.funFactData !== 'error') {
+      try {
+        if (navigator.share) {
+          await navigator.share({
+            title: `RootFacts - Fakta Unik ${state.detectionResult?.className}`,
+            text: state.funFactData,
+            url: window.location.href
+          });
+        } else {
+          await navigator.clipboard.writeText(state.funFactData);
+          alert('Fakta unik berhasil disalin ke clipboard untuk dibagikan!');
+        }
+      } catch (err) {
+        console.error('Failed to share', err);
+      }
+    }
+  };
+
   return (
     <div className="app-container">
       <Header modelStatus={state.modelStatus} />
@@ -185,6 +204,7 @@ function App() {
           funFactData={state.funFactData}
           error={state.error}
           onCopyFact={handleCopyFact}
+          onShareFact={handleShareFact}
         />
       </main>
 

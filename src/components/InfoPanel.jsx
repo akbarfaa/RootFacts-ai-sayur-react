@@ -1,6 +1,6 @@
 import { Sparkles, Search, CheckCircle, Lightbulb, Copy, Share2 } from 'lucide-react';
 
-function InfoPanel({ appState, detectionResult, funFactData, error, onCopyFact }) {
+function InfoPanel({ appState, detectionResult, funFactData, error, onCopyFact, onShareFact }) {
   const isIdle = appState === 'idle';
   const isAnalyzing = appState === 'analyzing';
   const isResult = appState === 'result';
@@ -105,7 +105,13 @@ function InfoPanel({ appState, detectionResult, funFactData, error, onCopyFact }
           <span id="detected-confidence" className="confidence-value">{confidence}%</span>
         </div>
 
-        <div className="share-hint">
+        <div 
+          className="share-hint" 
+          onClick={onShareFact}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') onShareFact(); }}
+        >
           <Share2 size={14} />
           <span>Salin dan bagikan ke teman!</span>
         </div>
