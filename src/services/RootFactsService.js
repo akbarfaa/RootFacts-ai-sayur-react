@@ -25,6 +25,7 @@ export class RootFactsService {
 
       this.generator = await pipeline('text2text-generation', 'Xenova/LaMini-Flan-T5-77M', {
         device: this.currentBackend,
+        dtype: 'q4',
         progress_callback: (info) => {
           if (info.status === 'progress') {
             const progress = Math.round(info.progress);
