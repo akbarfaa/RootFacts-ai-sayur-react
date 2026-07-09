@@ -1,1 +1,1 @@
-APP_URL=https://rootfacts-react-akbar.netlify.app
+APP_URL=https://ai-sayur-dicoding-akbar.netlify.app/
